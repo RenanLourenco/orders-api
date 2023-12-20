@@ -3,7 +3,6 @@ package application
 import (
 	"context"
 	"fmt"
-	"log"
 	"net/http"
 )
 
@@ -27,7 +26,7 @@ func (a *App) Start(ctx context.Context) error {
 
 	err := server.ListenAndServe()
 	if err != nil {
-		return fmt.Errorf("Error initializing server %s", err)
+		return fmt.Errorf("Error initializing server %w", err)
 	}
 
 	return nil
