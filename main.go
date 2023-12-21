@@ -3,12 +3,17 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
+	"os/signal"
 
 	"github.com/RenanLourenco/orders-api/application"
 )
 
 func main(){
-	ctx := context.Background()
+
+	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt)
+	defer cancel()
+
 	app := application.New()
 
 	err := app.Start(ctx)
